@@ -120,9 +120,9 @@ async function loadMore() {
     throw e;
   }
   state.loading = false;
-  // бутстрап ленты: если контент не создаёт скролл (страница ниже экрана) —
-  // догружаем ещё, иначе подгрузка по скроллу никогда не сработает
-  if (!state.done && document.documentElement.scrollHeight <= window.innerHeight + 200) {
+  // бутстрап ленты: пока страница ниже ~1.5 высоты экрана — догружаем ещё,
+  // иначе при плотной сетке карточек скролл крошечный и лента «встаёт»
+  if (!state.done && document.documentElement.scrollHeight < window.innerHeight * 1.5) {
     return loadMore();
   }
 }
@@ -214,8 +214,16 @@ async function renderMetrics() {
 
 const observer = new IntersectionObserver((entries) => {
   if (entries.some((e) => e.isIntersecting)) loadMore();
-}, { rootMargin: '800px' });
+}, { rootMargin: '1500px' });
 observer.observe(sentinel);
+
+// запасной триггер: догружаем, когда пользователь близко к низу, даже если
+// IntersectionObserver по какой-то причине не сработал
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1500) {
+    loadMore();
+  }
+}, { passive: true });
 
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
