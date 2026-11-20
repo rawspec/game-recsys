@@ -68,7 +68,7 @@ function card(game) {
 
   const chips = el('div', 'chips');
   if (game.score !== undefined && game.score !== null) {
-    chips.appendChild(el('span', 'badge', `совпадение ${Math.round(game.score * 100)}%`));
+    chips.appendChild(el('span', 'badge', `лучше ${(game.score * 100).toFixed(1)}% каталога`));
   }
   if (game.reason) chips.appendChild(el('span', 'reason', game.reason));
   body.appendChild(chips);

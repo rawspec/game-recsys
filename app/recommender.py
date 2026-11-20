@@ -31,7 +31,10 @@ class Recommender:
                 excluded[idx] = True
         masked = np.where(excluded, -1.0, score)
         ranked = np.argsort(-masked, kind="stable")
-        return {"ranked": ranked[: int((~excluded).sum())], "scores": score}
+        ranked = ranked[: int((~excluded).sum())]
+        ranks = np.empty(n, dtype=np.int64)
+        ranks[ranked] = np.arange(len(ranked))
+        return {"ranked": ranked, "scores": score, "ranks": ranks}
 
     def page(self, offset: int, limit: int, algo: str = "hybrid") -> dict:
         st = self.store
@@ -51,11 +54,12 @@ class Recommender:
         slice_idx = ranked[offset:offset + limit]
         ratings = cache["ratings"]
         reasons = self._reasons(slice_idx, ratings) if ratings else [None] * len(slice_idx)
+        total = max(1, len(ranked))
         items = [
             st.game_json(
                 int(idx),
                 rating=ratings.get(int(st.appids[idx])),
-                score=cache["scores"][idx],
+                score=1.0 - cache["ranks"][idx] / total,
                 reason=reason,
             )
             for idx, reason in zip(slice_idx, reasons)
