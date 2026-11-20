@@ -115,8 +115,15 @@ async function loadMore() {
     state.offset += data.items.length;
     state.done = data.items.length === 0 || state.offset >= data.total;
     endMsg.hidden = !state.done;
-  } finally {
+  } catch (e) {
     state.loading = false;
+    throw e;
+  }
+  state.loading = false;
+  // бутстрап ленты: если контент не создаёт скролл (страница ниже экрана) —
+  // догружаем ещё, иначе подгрузка по скроллу никогда не сработает
+  if (!state.done && document.documentElement.scrollHeight <= window.innerHeight + 200) {
+    return loadMore();
   }
 }
 
