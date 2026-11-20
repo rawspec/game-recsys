@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .ruff_cache/
+lab_plots/
+plots-matchad-like/
+docs/THEORY.ru.md
