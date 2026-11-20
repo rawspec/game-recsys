@@ -1,12 +1,12 @@
 """Шаг 8 (опциональный): LightFM. Пропускается, если пакет не установлен."""
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR  # noqa: E402
+from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR
 
 FACTORS = 64
 EPOCHS = 3

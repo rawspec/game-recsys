@@ -1,15 +1,15 @@
 """Шаг 6: BPR-MF — байесовское персонализированное ранжирование."""
 import json
-from pathlib import Path
 import sys
 import time
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR  # noqa: E402
-from trainers import train_bpr  # noqa: E402
+from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR
+from trainers import train_bpr
 
 FACTORS = 64
 EPOCHS = 2

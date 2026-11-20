@@ -60,7 +60,7 @@ class Recommender:
             )
             for idx, reason in zip(slice_idx, reasons)
         ]
-        return {"total": int(len(ranked)), "offset": offset, "algo": algo, "items": items}
+        return {"total": len(ranked), "offset": offset, "algo": algo, "items": items}
 
     def _reasons(self, page_idx, ratings) -> list:
         st = self.store

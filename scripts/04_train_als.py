@@ -3,10 +3,16 @@ import json
 import time
 
 import pandas as pd
-
 from common import (
-    ALS_FACTORS, ALS_FOLD_IN_REG, ALS_ITERATIONS, ALS_META, ALS_REG, ALS_Y_NPY,
-    GAMES_PARQUET, INTERACTIONS_PARQUET, POPULARITY_NPY, PROC_DIR,
+    ALS_FACTORS,
+    ALS_FOLD_IN_REG,
+    ALS_ITERATIONS,
+    ALS_META,
+    ALS_REG,
+    ALS_Y_NPY,
+    GAMES_PARQUET,
+    INTERACTIONS_PARQUET,
+    POPULARITY_NPY,
 )
 from trainers import train_als
 

@@ -7,9 +7,8 @@ os.environ.setdefault("HF_DEACTIVATE_ASYNC_LOAD", "1")
 import numpy as np
 import pandas as pd
 import torch
-from sentence_transformers import SentenceTransformer
-
 from common import EMBED_MODEL, EMBEDDINGS_NPY, GAMES_PARQUET
+from sentence_transformers import SentenceTransformer
 
 
 def make_text(row) -> str:

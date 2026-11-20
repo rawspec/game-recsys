@@ -1,5 +1,4 @@
 """Вставляет таблицу метрик из data/results/metrics.md в README.md и README.ru.md."""
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]

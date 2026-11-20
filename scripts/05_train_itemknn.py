@@ -1,13 +1,13 @@
 """Шаг 5: ItemKNN — косинусная item-item схожесть по взаимодействиям."""
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import pandas as pd
 from scipy import sparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR  # noqa: E402
-from trainers import train_itemknn  # noqa: E402
+from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR
+from trainers import train_itemknn
 
 
 def main() -> None:

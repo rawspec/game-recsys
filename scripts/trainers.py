@@ -152,8 +152,8 @@ def train_twotower(users, items, conf, n_items, factors=128, epochs=1,
     Возвращает (item_emb, w1, b1, w2, b2) — всё numpy для инференса без torch.
     """
     import torch
-    import torch.nn as nn
     import torch.nn.functional as F
+    from torch import nn
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     torch.manual_seed(seed)

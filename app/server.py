@@ -38,7 +38,7 @@ def index():
 @app.get("/api/stats")
 def stats():
     return {
-        "catalog": int(len(store.appids)),
+        "catalog": len(store.appids),
         "rated": len(store.get_ratings()),
         "hidden": len(store.get_hidden()),
         "embeddings": int(store.embeddings.shape[1]),

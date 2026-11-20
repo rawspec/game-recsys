@@ -1,17 +1,17 @@
 """Шаг 7: Two-Tower нейросеть (PyTorch, GPU) с InfoNCE."""
 import json
 import os
-from pathlib import Path
 import sys
 import time
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 os.environ.setdefault("HF_DEACTIVATE_ASYNC_LOAD", "1")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR  # noqa: E402
-from trainers import train_twotower  # noqa: E402
+from common import GAMES_PARQUET, INTERACTIONS_PARQUET, MODELS_DIR
+from trainers import train_twotower
 
 FACTORS = 128
 EPOCHS = 1

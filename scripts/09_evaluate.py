@@ -14,12 +14,19 @@ import pandas as pd
 from scipy import sparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import (  # noqa: E402
-    ALS_FOLD_IN_REG, ALS_REG, EMBEDDINGS_NPY, GAMES_PARQUET, INTERACTIONS_PARQUET,
-    MODELS_DIR, POPULARITY_NPY, RESULTS_DIR,
+from common import (
+    ALS_FOLD_IN_REG,
+    ALS_REG,
+    EMBEDDINGS_NPY,
+    GAMES_PARQUET,
+    INTERACTIONS_PARQUET,
+    RESULTS_DIR,
 )
-from trainers import (  # noqa: E402
-    train_als, train_bpr, train_itemknn, train_twotower,
+from trainers import (
+    train_als,
+    train_bpr,
+    train_itemknn,
+    train_twotower,
 )
 
 SEED = 42
@@ -45,7 +52,7 @@ def split(inter: pd.DataFrame):
     for s, e in zip(starts, ends):
         n = e - s
         if n >= MIN_INTERACTIONS:
-            k = max(1, int(round(n * TEST_FRAC)))
+            k = max(1, round(n * TEST_FRAC))
             choice = rng.choice(n, size=k, replace=False)
             test_mask[order[s + choice]] = True
             test_users_all.append(u_s[s])
@@ -74,7 +81,6 @@ def _dense(x) -> np.ndarray:
 
 def batch_scores(model_name, chunk_users, profile_chunk, ctx):
     """profile_chunk — CSR (B x n_items) с единичными весами."""
-    n_items = ctx["n_items"]
     if model_name == "popularity":
         return np.tile(ctx["popularity"], (len(chunk_users), 1))
     if model_name == "content":
@@ -179,7 +185,7 @@ def main() -> None:
     meta_file = cache / "meta.json"
     cache_valid = meta_file.exists() and json.loads(meta_file.read_text()) == {
         "seed": SEED, "test_frac": TEST_FRAC, "min_interactions": MIN_INTERACTIONS,
-        "train_pairs": int(len(tr_u)), "als_reg": ALS_REG,
+        "train_pairs": len(tr_u), "als_reg": ALS_REG,
     }
 
     if cache_valid:
@@ -212,7 +218,7 @@ def main() -> None:
             np.save(cache / f"tt_{k}.npy", v)
         meta_file.write_text(json.dumps({
             "seed": SEED, "test_frac": TEST_FRAC, "min_interactions": MIN_INTERACTIONS,
-            "train_pairs": int(len(tr_u)), "als_reg": ALS_REG,
+            "train_pairs": len(tr_u), "als_reg": ALS_REG,
         }))
 
     models = ["popularity", "content", "als", "itemknn", "bpr", "twotower"]

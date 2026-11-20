@@ -11,13 +11,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from app.models.als import ALSModel  # noqa: E402
-from app.models.bpr import BPRModel  # noqa: E402
-from app.models.content import ContentModel  # noqa: E402
-from app.models.hybrid import HybridModel  # noqa: E402
-from app.models.itemknn import ItemKNNModel  # noqa: E402
-from app.models.popularity import PopularityModel  # noqa: E402
-from trainers import train_als, train_bpr, train_itemknn  # noqa: E402
+from trainers import train_als, train_bpr, train_itemknn
+
+from app.models.als import ALSModel
+from app.models.bpr import BPRModel
+from app.models.content import ContentModel
+from app.models.hybrid import HybridModel
+from app.models.itemknn import ItemKNNModel
+from app.models.popularity import PopularityModel
 
 
 @pytest.fixture()
@@ -106,8 +107,9 @@ def test_metrics_known_values():
 
 
 def test_split_deterministic():
-    import pandas as pd
     from importlib import util
+
+    import pandas as pd
     spec = util.spec_from_file_location(
         "ev", ROOT / "scripts" / "09_evaluate.py")
     ev = util.module_from_spec(spec)

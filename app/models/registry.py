@@ -57,8 +57,9 @@ class ModelRegistry:
             if Path(path).exists():
                 try:
                     self._models[name] = loader()
-                except Exception:
-                    pass  # битый артефакт — пропускаем, можно переобучить
+                except Exception:  # noqa: BLE001, S110
+                    # битый или несовместимый артефакт — пропускаем, можно переобучить
+                    pass
 
     def get(self, name: str):
         return self._models.get(name)

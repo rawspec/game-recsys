@@ -4,9 +4,12 @@ import re
 
 import numpy as np
 import pandas as pd
-
 from common import (
-    GAMES_PARQUET, INTERACTIONS_PARQUET, RAW_DIR, SGR_DIR, SGR_SHARDS,
+    GAMES_PARQUET,
+    INTERACTIONS_PARQUET,
+    RAW_DIR,
+    SGR_DIR,
+    SGR_SHARDS,
 )
 
 HTML_RE = re.compile(r"<[^>]+>")

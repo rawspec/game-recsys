@@ -8,7 +8,12 @@ import numpy as np
 import pandas as pd
 
 from .config import (
-    ALS_META, ALS_Y_NPY, DB_PATH, EMBEDDINGS_NPY, GAMES_PARQUET, POPULARITY_NPY,
+    ALS_META,
+    ALS_Y_NPY,
+    DB_PATH,
+    EMBEDDINGS_NPY,
+    GAMES_PARQUET,
+    POPULARITY_NPY,
 )
 
 

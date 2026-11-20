@@ -1,6 +1,11 @@
 """Шаг 1: скачивание сырых датасетов."""
 from common import (
-    CATALOG_URL, RAW_DIR, SGR_BASE_URL, SGR_DIR, SGR_SHARDS, download,
+    CATALOG_URL,
+    RAW_DIR,
+    SGR_BASE_URL,
+    SGR_DIR,
+    SGR_SHARDS,
+    download,
 )
 
 
