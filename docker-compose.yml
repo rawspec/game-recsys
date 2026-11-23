@@ -1,0 +1,12 @@
+services:
+  gamerec:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - gamerec-data:/app/data
+    environment:
+      - HF_DEACTIVATE_ASYNC_LOAD=1
+
+volumes:
+  gamerec-data:

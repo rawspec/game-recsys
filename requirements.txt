@@ -1,0 +1,9 @@
+numpy
+pandas
+pyarrow
+requests
+scipy
+matplotlib
+fastapi
+uvicorn[standard]
+sentence-transformers

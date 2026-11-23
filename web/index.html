@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GameRec — рекомендации игр</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">🎮 GameRec</div>
+  <div class="search">
+    <input id="search-input" type="text" autocomplete="off" placeholder="Найти игру, чтобы оценить…">
+    <div id="search-results" class="dropdown" hidden></div>
+  </div>
+  <select id="algo-select" class="algo-select" title="Алгоритм рекомендаций"></select>
+  <div id="stats" class="stats"></div>
+</header>
+<nav class="tabs">
+  <button id="tab-rec" class="tab active" type="button">Рекомендации</button>
+  <button id="tab-rated" class="tab" type="button">Мои оценки <span id="rated-count" class="pill" hidden></span></button>
+  <button id="tab-metrics" class="tab" type="button">Сравнение алгоритмов</button>
+</nav>
+<main>
+  <p id="hint" class="hint"></p>
+  <div id="feed" class="grid"></div>
+  <div id="metrics-box" class="metrics-box" hidden></div>
+  <div id="sentinel"></div>
+  <p id="end" class="end" hidden>Это всё. Оцените больше игр — рекомендации станут точнее.</p>
+</main>
+<div id="modal" class="modal" hidden>
+  <div class="modal-card">
+    <button id="modal-close" class="modal-close" type="button">✕</button>
+    <img id="modal-img" alt="">
+    <h2 id="modal-name"></h2>
+    <p id="modal-meta" class="meta"></p>
+    <p id="modal-desc"></p>
+    <div id="modal-tags" class="chips"></div>
+    <div class="rate-row">
+      <span>Моя оценка:</span>
+      <div id="modal-stars" class="stars"></div>
+      <span id="modal-rating-val"></span>
+    </div>
+    <button id="modal-hide" class="btn-ghost" type="button">Не показывать в рекомендациях</button>
+  </div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

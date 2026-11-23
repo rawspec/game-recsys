@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CPU torch (lightweight)
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install lightfm || true
+          pip install -r requirements.txt
+          pip install pytest ruff
+
+      - name: Ruff lint
+        run: ruff check app scripts tests
+
+      - name: Pytest (synthetic data, no downloads)
+        run: pytest -q
